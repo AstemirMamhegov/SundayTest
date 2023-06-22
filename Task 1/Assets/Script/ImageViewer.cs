@@ -15,7 +15,13 @@ namespace Assets.Script
         private void Start()
         {
             image.sprite = DataController.instance.image;
+
+            Screen.orientation = ScreenOrientation.AutoRotation;
         }
 
+        private void OnDestroy()
+        {
+            Screen.orientation = ScreenOrientation.Portrait;
+        }
     }
 }

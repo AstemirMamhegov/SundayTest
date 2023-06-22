@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ColorChangeClicker : MonoBehaviour
+{
+    [SerializeField] private GameObject _coinShader;
+
+    private void OnMouseDown()
+    {
+        float redX = Random.Range(0, 256);
+        float greenX = Random.Range(0, 256);
+        float blueX = Random.Range(0, 256);
+        float colourSum = redX + greenX + blueX;
+        redX = redX / colourSum;
+        greenX = greenX / colourSum;
+        blueX = blueX / colourSum;
+
+        _coinShader.GetComponent<Renderer>().material.color = new Color(redX, greenX, blueX, 1);
+    }
+}

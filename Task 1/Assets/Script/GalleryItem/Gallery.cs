@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static System.Net.WebRequestMethods;
 
 namespace Assets.Script.GalleryItem
@@ -9,10 +10,17 @@ namespace Assets.Script.GalleryItem
         [SerializeField] private List<AssetGalleryImg> Items;
         [SerializeField] private GalleryCell _galleryCellTemplate;
         [SerializeField] private Transform _container;
+        [SerializeField] private GridLayoutGroup _layoutGroup;
 
         public void OnEnable()
         {
+            float widthScreen = Screen.width;
+            float cellSize = (Screen.width - _layoutGroup.spacing.x * _layoutGroup.constraintCount - _layoutGroup.padding.left - _layoutGroup.padding.right)/ _layoutGroup.constraintCount;
+            _layoutGroup.cellSize = new Vector2 (cellSize, cellSize);
+
             Render(Items);
+
+            Debug.Log(Screen.width);
         }
 
         public void Render(List<AssetGalleryImg> items)
@@ -21,12 +29,6 @@ namespace Assets.Script.GalleryItem
             {
                 Destroy(child.gameObject);
             }
-
-            //items.ForEach(item =>
-            //{
-            //    var cell = Instantiate(_galleryCellTemplate, _container);
-            //    cell.Render(item);
-            //});
 
             for(int i = 1; i <= 66; i++)
             {
