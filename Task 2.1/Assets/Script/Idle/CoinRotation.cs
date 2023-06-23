@@ -5,10 +5,11 @@ using UnityEngine;
 public class CoinRotation : MonoBehaviour
 {
 
-    [SerializeField] public float speed = 0;
+    public float speed = 0;
+    public Vector3 dirRotate;
     
     void Update()
     {
-        transform.Rotate(0, 0, speed * Time.deltaTime, Space.Self);
+        transform.Rotate(dirRotate * speed * Time.deltaTime, Space.Self);
     }
 }
