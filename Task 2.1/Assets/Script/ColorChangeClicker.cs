@@ -1,10 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ColorChangeClicker : MonoBehaviour
 {
     [SerializeField] private GameObject _coinShader;
+    [SerializeField] private TextMeshProUGUI _textMeshProCoinClickClicker;
+
+    public int coinClickCounter;
+
+    private void Start()
+    {
+        _textMeshProCoinClickClicker.text = coinClickCounter.ToString();
+    }
+
+    public void Update()
+    {
+        _textMeshProCoinClickClicker.text = coinClickCounter.ToString();
+    }
 
     private void OnMouseDown()
     {
@@ -17,5 +31,7 @@ public class ColorChangeClicker : MonoBehaviour
         blueX = blueX / colourSum;
 
         _coinShader.GetComponent<Renderer>().material.color = new Color(redX, greenX, blueX, 1);
+
+        coinClickCounter++;
     }
 }
